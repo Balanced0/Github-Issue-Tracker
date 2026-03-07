@@ -37,6 +37,7 @@
     </style>
   </head>
   <body class="bg-[#F8FAFC]">
+    <section id="alert-container" class="container mx-auto"></section>
     <section class="container mx-auto px-6 pt-[80px] pb-[80px]">
       <div class="card bg-base-100 max-w-md shadow-md mx-auto">
         <div class="card-body">
@@ -58,20 +59,21 @@
               <label class="label text-black text-base font-medium"
                 >Username</label
               >
-              <input type="email" class="input w-full" placeholder="Enter Username" />
+              <input id="username" type="email" class="input w-full" placeholder="Enter Username" />
               <p class="text-[#4A00FF] mb-[16px]">Default: admin</p>
 
               <label class="label text-black text-base font-medium"
                 >Password</label
               >
               <input
+                id="password"
                 type="password"
                 class="input w-full"
                 placeholder="Enter Password"
               />
               <p class="text-[#4A00FF] mb-[16px]">Default: admin123</p>
 
-              <button class="btn btn-primary mt-4 mb-[24px]">Sign In</button>
+              <button id="signIn-btn" class="btn btn-primary mt-4 mb-[24px]">Sign In</button>
               <div class="flex items-center">
                 <div class="flex-grow border-t text-[#E4E4E7]"></div>
                 <span class="mx-2 text-base">OR</span>
@@ -87,5 +89,7 @@
         </div>
       </div>
     </section>
+
+    <script src="script/index.js"></script>
   </body>
 </html>
