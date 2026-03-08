@@ -76,6 +76,11 @@ const showAllCards = (cards) =>{
                 </div>
             </div>
         `;
+
+        issueCard.addEventListener("click", () => {
+            show_Modal(card);
+        });
+
         idContainer.append(issueCard);
     }
 }
@@ -152,6 +157,9 @@ const allButton = () =>{
                 </div>
             </div>
         `;
+        issueCard.addEventListener("click", () => {
+            show_Modal(card);
+        });
         idContainer.append(issueCard);
         allCounter++;
     }
@@ -232,6 +240,9 @@ const closedButton = () =>{
                     </div>
                 </div>
             `;
+            issueCard.addEventListener("click", () => {
+                show_Modal(card);
+            });
             idContainer.append(issueCard);
             closedCounter++;
         }
@@ -313,11 +324,61 @@ const openButton = () =>{
                     </div>
                 </div>
             `;
+            issueCard.addEventListener("click", () => {
+                show_Modal(card);
+            });
             idContainer.append(issueCard);
             openCounter++;
         }
     }
     const totalIssues = document.getElementById("totalIssues");
     totalIssues.innerText = openCounter;
+}
+const show_Modal = (card) =>{
+    const body = document.getElementById("cards-container");
+    const temp = document.createElement("div");
+    temp.innerHTML = `
+        <dialog id="${card.id}" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <h3 class="text-2xl font-bold mb-[8px]">${card.title}</h3>
+            <div>
+              <div class="flex items-center gap-2 mb-[24px]">
+                <div class="badge ${(card.status === "open") ? "badge-success" : "badge-primary"} rounded-3xl text-white">
+                  ${(card.status === "open") ? "Opened" : "Closed"}
+                </div>
+                <div class="bg-[#64748B] w-1 h-1 rounded-full"></div>
+                <p class="text-[#64748B] text-xs">Opened by ${card.author}</p>
+                <div class="bg-[#64748B] w-1 h-1 rounded-full"></div>
+                <p class="text-[#64748B] text-xs">22/02/2026</p>
+              </div>
+              <div class="mb-[24px] flex flex-wrap gap-2">
+                <div class="badge badge-soft badge-error"><img src="./assets/BugDroid.png">BUG</div>
+                <div class="badge badge-soft badge-warning"><img src="./assets/Lifebuoy.png">HELP WANTED</div>
+              </div>
+              <p class="text-[#64748B] mb-[24px]">${card.description}</p>
+              <div class="flex justify-between bg-[#F8FAFC] rounded-xl p-4">
+                <div class="flex-1">
+                  <p class="text-[#64748B] mb-1">Assignee:</p>
+                  <p class="font-semibold">${card.assignee}</p>
+                </div>
+                <div class="flex flex-col flex-1 justify-start">
+                  <p class="text-[#64748B] mb-1">Priority:</p>
+                  <div class="badge badge-error text-white rounded-full">High</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn btn-primary">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+    `;
+    body.append(temp);
+    const modal = document.getElementById(`${card.id}`);
+    modal.showModal();
 }
 getAllCards();
