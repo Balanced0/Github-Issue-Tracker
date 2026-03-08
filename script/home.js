@@ -81,6 +81,12 @@ const showAllCards = (cards) =>{
 }
 
 const allButton = () =>{
+    const closedButton = document.getElementById("closedButton");
+    const allButton = document.getElementById("allButton");
+    const openButton = document.getElementById("openButton");
+    closedButton.classList.add("btn-outline");
+    allButton.classList.remove("btn-outline");
+    openButton.classList.add("btn-outline");
     const idContainer = document.getElementById("cards-container");
     idContainer.innerHTML = "";
     let allCounter = 0;
@@ -154,6 +160,12 @@ const allButton = () =>{
 }
 
 const closedButton = () =>{
+    const closedButton = document.getElementById("closedButton");
+    const allButton = document.getElementById("allButton");
+    const openButton = document.getElementById("openButton");
+    closedButton.classList.remove("btn-outline");
+    allButton.classList.add("btn-outline");
+    openButton.classList.add("btn-outline");
     const idContainer = document.getElementById("cards-container");
     idContainer.innerHTML = "";
     let closedCounter = 0;
@@ -229,6 +241,12 @@ const closedButton = () =>{
 }
 
 const openButton = () =>{
+    const closedButton = document.getElementById("closedButton");
+    const allButton = document.getElementById("allButton");
+    const openButton = document.getElementById("openButton");
+    closedButton.classList.add("btn-outline");
+    allButton.classList.add("btn-outline");
+    openButton.classList.remove("btn-outline");
     const idContainer = document.getElementById("cards-container");
     idContainer.innerHTML = "";
     let openCounter = 0;
