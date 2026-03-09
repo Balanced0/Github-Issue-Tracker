@@ -339,6 +339,43 @@ const openButton = () =>{
 const show_Modal = (card) =>{
     const body = document.getElementById("cards-container");
     const temp = document.createElement("div");
+
+
+    let priority;
+    if(card.priority === "high"){
+        priority = "<div class='badge badge-error text-white rounded-full'>High</div>";
+    }
+    else if(card.priority === "medium"){
+        priority = "<div class='badge badge-warning text-white rounded-full'>Medium</div>";
+    }
+    else if(card.priority === "low"){
+        priority = "<div class='badge bg-gray-500 text-white rounded-full'>Low</div>";
+    }
+
+    let cardLabels = ``;
+        for(let label of card.labels){
+            if(label === "bug"){
+                cardLabels = cardLabels + `<div class="badge badge-soft badge-error"><img src="./assets/BugDroid.png">BUG</div>`;
+            }
+            else if(label === "help wanted"){
+                cardLabels = cardLabels + `<div class="badge badge-soft badge-warning"><img src="./assets/Lifebuoy.png">HELP WANTED</div>`;
+            }
+            else if(label === "enhancement"){
+                cardLabels = cardLabels + `<div class="badge badge-soft badge-success"><img src="./assets/Sparkle.png">ENHANCEMENT</div>`;
+            }
+            else if(label === "good first issue"){
+                cardLabels = cardLabels + `<div class="badge badge-soft badge-success"><img src="./assets/Sparkle.png">GOOD FIRST ISSUE</div>`;
+            }
+            else if(label === "documentation"){
+                cardLabels = cardLabels + `<div class="badge badge-soft badge-info">DOCUMENTATION</div>`;
+            }
+        }
+
+     const fullDate = card.createdAt.split("T")[0];
+            const day = fullDate.split("-")[2];
+            const month = fullDate.split("-")[1];
+            const year = fullDate.split("-")[0];
+    
     temp.innerHTML = `
         <dialog id="${card.id}" class="modal modal-bottom sm:modal-middle">
           <div class="modal-box">
@@ -349,23 +386,22 @@ const show_Modal = (card) =>{
                   ${(card.status === "open") ? "Opened" : "Closed"}
                 </div>
                 <div class="bg-[#64748B] w-1 h-1 rounded-full"></div>
-                <p class="text-[#64748B] text-xs">Opened by ${card.author}</p>
+                <p class="text-[#64748B] text-xs">${(card.status === "open") ? "Opened" : "Closed"} by ${card.author}</p>
                 <div class="bg-[#64748B] w-1 h-1 rounded-full"></div>
-                <p class="text-[#64748B] text-xs">22/02/2026</p>
+                <p class="text-[#64748B] text-xs">${day}/${month}/${year}</p>
               </div>
               <div class="mb-[24px] flex flex-wrap gap-2">
-                <div class="badge badge-soft badge-error"><img src="./assets/BugDroid.png">BUG</div>
-                <div class="badge badge-soft badge-warning"><img src="./assets/Lifebuoy.png">HELP WANTED</div>
+                ${cardLabels}
               </div>
               <p class="text-[#64748B] mb-[24px]">${card.description}</p>
               <div class="flex justify-between bg-[#F8FAFC] rounded-xl p-4">
                 <div class="flex-1">
                   <p class="text-[#64748B] mb-1">Assignee:</p>
-                  <p class="font-semibold">${card.assignee}</p>
+                  <p class="font-semibold">${(card.assignee === "") ? "Not Found" : card.assignee}</p>
                 </div>
                 <div class="flex flex-col flex-1 justify-start">
                   <p class="text-[#64748B] mb-1">Priority:</p>
-                  <div class="badge badge-error text-white rounded-full">High</div>
+                  ${priority}
                 </div>
               </div>
             </div>
