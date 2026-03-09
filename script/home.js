@@ -5,9 +5,9 @@ const getAllCards = () =>{
         totalCards(data.data.length);
         showAllCards(data.data);
         allCards = data.data;
+        searchCards();
     });
 }
-
 const totalCards = (totalData) => {
     const totalIssues = document.getElementById("totalIssues");
     totalIssues.innerText = totalData;
@@ -418,5 +418,18 @@ const show_Modal = (card) =>{
     body.append(temp);
     const modal = document.getElementById(`${card.id}`);
     modal.showModal();
+}
+const searchCards = () =>{
+    document.getElementById("input-search").addEventListener("input", () =>{
+        const search = document.getElementById("input-search");
+        const searchValue = search.value.trim().toLowerCase();
+        const filteredCards = allCards.filter(card => card.title.toLowerCase().includes(searchValue) || card.description.toLowerCase().includes(searchValue)
+    );
+    const idContainer = document.getElementById("cards-container");
+    idContainer.innerHTML = "";
+    showAllCards(filteredCards);
+    totalCards(filteredCards.length);
+    });
+    
 }
 getAllCards();
