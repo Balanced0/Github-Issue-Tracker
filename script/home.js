@@ -1,7 +1,14 @@
 let allCards = [];
 const getAllCards = () =>{
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+    const idContainer = document.getElementById("cards-container");
+    idContainer.innerHTML = `
+        <div class="col-span-full flex justify-center items-center py-10">
+            <span class="loading loading-bars loading-xl"></span>
+        </div>
+    `;
     fetch(url).then((res) => res.json()).then((data) => {
+        idContainer.innerHTML = "";
         totalCards(data.data.length);
         showAllCards(data.data);
         allCards = data.data;
@@ -14,6 +21,7 @@ const totalCards = (totalData) => {
 }
 const showAllCards = (cards) =>{
     const idContainer = document.getElementById("cards-container");
+    idContainer.innerHTML = "";
     for(let card of cards){
         const fullDate = card.createdAt.split("T")[0];
         const day = fullDate.split("-")[2];
