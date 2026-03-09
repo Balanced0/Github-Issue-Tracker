@@ -75,6 +75,7 @@ Ans:
 Template literals allow us to write strings using backticks `` and also we can embed variables inside them.
 
 For Example:
+```
 const name = "Alvi";
 const age = 20;
 console.log(`My name is ${name} and I am ${age} years old.`);
