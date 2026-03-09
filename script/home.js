@@ -174,10 +174,12 @@ const closedButton = () =>{
     closedButton.classList.remove("btn-outline");
     allButton.classList.add("btn-outline");
     openButton.classList.add("btn-outline");
+
+
     const idContainer = document.getElementById("cards-container");
     idContainer.innerHTML = "";
     let closedCounter = 0;
-    for(card of allCards){
+    for(let card of allCards){
         if(card.status === "closed"){
             const fullDate = card.createdAt.split("T")[0];
             const day = fullDate.split("-")[2];
@@ -240,10 +242,10 @@ const closedButton = () =>{
                     </div>
                 </div>
             `;
+            idContainer.append(issueCard);
             issueCard.addEventListener("click", () => {
                 show_Modal(card);
             });
-            idContainer.append(issueCard);
             closedCounter++;
         }
     }
@@ -261,7 +263,7 @@ const openButton = () =>{
     const idContainer = document.getElementById("cards-container");
     idContainer.innerHTML = "";
     let openCounter = 0;
-    for(card of allCards){
+    for(let card of allCards){
         if(card.status === "open"){
             const fullDate = card.createdAt.split("T")[0];
             const day = fullDate.split("-")[2];
@@ -324,10 +326,10 @@ const openButton = () =>{
                     </div>
                 </div>
             `;
+            idContainer.append(issueCard);
             issueCard.addEventListener("click", () => {
                 show_Modal(card);
             });
-            idContainer.append(issueCard);
             openCounter++;
         }
     }
